@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Business;
 use App\Models\Person;
 use Illuminate\Http\Request;
 
@@ -20,7 +21,8 @@ class PersonController extends Controller
 
     public function create()
     {
-        return view('people.create');
+        $businesses = Business::all();
+        return view('people.create', compact('businesses'));
     }
 
     public function store(Request $request)

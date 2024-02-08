@@ -26,7 +26,7 @@ class TaskController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'name' => 'required',
+            'title' => 'required',
             'description' => 'required',
             // Add validation rules for other fields
         ]);

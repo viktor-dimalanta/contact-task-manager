@@ -31,11 +31,57 @@ use Illuminate\Support\Facades\Route;
         Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
         Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-        Route::resource('businesses', BusinessController::class);
-        Route::resource('people', PersonController::class);
-        Route::resource('tags', TagController::class);
-        Route::resource('categories', CategoryController::class);
-        Route::resource('tasks', TaskController::class);
+        Route::resource('businesses', BusinessController::class)->names([
+            'index' => 'businesses.index',
+            'create' => 'businesses.create',
+            'store' => 'businesses.store',
+            'show' => 'businesses.show',
+            'edit' => 'businesses.edit',
+            'update' => 'businesses.update',
+            'destroy' => 'businesses.destroy',
+        ]);
+    
+        Route::resource('people', PersonController::class)->names([
+            'index' => 'people.index',
+            'create' => 'people.create',
+            'store' => 'people.store',
+            'show' => 'people.show',
+            'edit' => 'people.edit',
+            'update' => 'people.update',
+            'destroy' => 'people.destroy',
+        ]);
+    
+        Route::resource('tasks', TaskController::class)->names([
+            'index' => 'tasks.index',
+            'create' => 'tasks.create',
+            'store' => 'tasks.store',
+            'show' => 'tasks.show',
+            'edit' => 'tasks.edit',
+            'update' => 'tasks.update',
+            'destroy' => 'tasks.destroy',
+        ]);
+
+        Route::resource('tags', TagController::class)->names([
+            'index' => 'tags.index',
+            'create' => 'tags.create',
+            'store' => 'tags.store',
+            'show' => 'tags.show',
+            'edit' => 'tags.edit',
+            'update' => 'tags.update',
+            'destroy' => 'tags.destroy',
+        ]);
+    
+        // Define resource routes with custom names for categories
+        Route::resource('categories', CategoryController::class)->names([
+            'index' => 'categories.index',
+            'create' => 'categories.create',
+            'store' => 'categories.store',
+            'show' => 'categories.show',
+            'edit' => 'categories.edit',
+            'update' => 'categories.update',
+            'destroy' => 'categories.destroy',
+        ]);
+    
     });
 
 require __DIR__.'/auth.php';
