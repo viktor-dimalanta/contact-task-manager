@@ -1,6 +1,9 @@
-@extends('layouts.app')
-
-@section('content')
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('Categories') }}
+        </h2>
+    </x-slot>
     <div class="container mx-auto">
         <h1 class="text-2xl font-bold mt-4 mb-2">Categories</h1>
         <a href="{{ route('categories.create') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Create New Category</a>
@@ -31,4 +34,4 @@
             </tbody>
         </table>
     </div>
-@endsection
+</x-app-layout>

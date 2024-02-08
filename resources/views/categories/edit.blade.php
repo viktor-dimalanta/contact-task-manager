@@ -1,6 +1,9 @@
-@extends('layouts.app')
-
-@section('content')
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('Categories') }}
+        </h2>
+    </x-slot>
     <div class="container mx-auto">
         <h1 class="text-2xl font-bold mt-4 mb-2">Edit Category</h1>
         <form action="{{ route('categories.update', $category->id) }}" method="POST">
@@ -20,4 +23,4 @@
             </div>
         </form>
     </div>
-@endsection
+</x-app-layout>
