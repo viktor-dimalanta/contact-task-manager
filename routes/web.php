@@ -30,17 +30,12 @@ use Illuminate\Support\Facades\Route;
         Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
         Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
         Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+        Route::resource('businesses', BusinessController::class);
+        Route::resource('people', PersonController::class);
+        Route::resource('tags', TagController::class);
+        Route::resource('categories', CategoryController::class);
+        Route::resource('tasks', TaskController::class);
     });
 
-    Route::resource('businesses', BusinessController::class)->names([
-        'index' => 'profile.index',
-        // Add more names for other resourceful routes if needed
-    ]);
-    Route::resource('people', PersonController::class);
-    Route::resource('tags', TagController::class);
-    Route::resource('categories', CategoryController::class);
-    Route::resource('tasks', TaskController::class)->names([
-        'index' => 'tasks.index',
-        // Add more names for other resourceful routes if needed
-    ]);
 require __DIR__.'/auth.php';

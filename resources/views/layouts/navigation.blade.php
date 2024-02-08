@@ -16,9 +16,39 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
                 </div>
+                <div class="hidden sm:flex sm:items-center sm:ms-6">
+                    <x-dropdown>
+                        <x-slot name="trigger">
+                        <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
+                                <div>{{ __('Tasks') }}</div>
+
+                                <div class="ml-1">
+                                    <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 12l-6-6 1.41-1.41L10 9.17l4.59-4.58L16 6l-6 6z" clip-rule="evenodd"/>
+                                    </svg>
+                                </div>
+                            </button>
+                        </x-slot>
+
+                        <x-slot name="content">
+                            <!-- Dropdown items -->
+                            <x-dropdown-link :href="route('people.index')" :active="request()->routeIs('people.index')">
+                                {{ __('People') }}
+                            </x-dropdown-link>
+                            <x-dropdown-link :href="route('businesses.index')" :active="request()->routeIs('businesses.index')">
+                                {{ __('Business') }}
+                            </x-dropdown-link>
+                        </x-slot>
+                    </x-dropdown>
+                </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('tasks.index')" :active="request()->routeIs('tasks.index')">
-                        {{ __('Tasks') }}
+                    <x-nav-link :href="route('tags.index')" :active="request()->routeIs('tags.index')">
+                        {{ __('Tags') }}
+                    </x-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('categories.index')" :active="request()->routeIs('categories.index')">
+                        {{ __('Categories') }}
                     </x-nav-link>
                 </div>
             </div>
