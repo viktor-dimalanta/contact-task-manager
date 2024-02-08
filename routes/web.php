@@ -19,7 +19,7 @@ use App\Http\Controllers\TaskController;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('home');;
 
 Route::resource('businesses', BusinessController::class);
 Route::resource('people', PersonController::class);
