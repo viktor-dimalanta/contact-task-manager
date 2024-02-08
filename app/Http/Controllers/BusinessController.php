@@ -14,7 +14,7 @@ class BusinessController extends Controller
     
     public function index()
     {
-        $businesses = Business::all();
+        $businesses = Business::paginate(10);
         return view('businesses.index', compact('businesses'));
     }
 

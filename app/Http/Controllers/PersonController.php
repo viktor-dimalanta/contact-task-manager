@@ -15,13 +15,13 @@ class PersonController extends Controller
     
     public function index()
     {
-        $people = Person::all();
+        $people = Person::paginate(10);
         return view('people.index', compact('people'));
     }
 
     public function create()
     {
-        $businesses = Business::all();
+        $businesses = Business::paginate(10);
         return view('people.create', compact('businesses'));
     }
 
