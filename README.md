@@ -70,8 +70,8 @@ _Follow the steps below to install the project in your local machine._
    ```
 ## Sample Credentials
 
-* viktor@example.com
-* jolibee
+* user: viktor@example.com
+* pass: jolibee
 <!-- USAGE EXAMPLES -->
 ## Usage
 
@@ -108,7 +108,7 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 Viktor Angelo Dimalanta - dimalantaviktorangelo@gmail.com
 
-Project Link: [[https://github.com/your_username/repo_name](https://github.com/your_username/repo_name)](https://github.com/viktor-dimalanta)
+Project Link: [[https://github.com/viktor-dimalanta](https://github.com/viktor-dimalanta/contact-task-manager)]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
