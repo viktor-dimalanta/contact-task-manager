@@ -4,35 +4,75 @@
             {{ __('Tasks') }}
         </h2>
     </x-slot>
-        <div class="container mx-auto">
-            <h1 class="text-2xl font-bold mt-4 mb-2">Tasks</h1>
-            <a href="{{ route('tasks.create') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Add New Task</a>
-            <table class="table-auto mt-4">
-                <thead>
-                    <tr>
-                        <th class="px-4 py-2">ID</th>
-                        <th class="px-4 py-2">Title</th>
-                        <th class="px-4 py-2">Description</th>
-                        <th class="px-4 py-2">Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($tasks as $task)
-                        <tr>
-                            <td class="border px-4 py-2">{{ $task->id }}</td>
-                            <td class="border px-4 py-2">{{ $task->title }}</td>
-                            <td class="border px-4 py-2">{{ $task->description }}</td>
-                            <td class="border px-4 py-2">
-                                <a href="{{ route('tasks.edit', $task->id) }}" class="text-blue-500 hover:text-blue-700">Edit</a>
-                                <form action="{{ route('tasks.destroy', $task->id) }}" method="POST" class="inline">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="text-red-500 hover:text-red-700 ml-2">Delete</button>
-                                </form>
-                            </td>
+    <div class="my-6">
+        <div class="grid sm:grid-cols items-center gap-16 p-8 mx-auto max-w-4xl bg-white shadow-[0_2px_10px_-3px_rgba(6,81,237,0.3)] rounded-md text-[#333] font-[sans-serif]">
+            <b>Open Tasks List</b>
+            <div class="relative overflow-x-auto shadow-md sm:rounded-lg" style="margin-top: -50px;">
+                <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white" class="px-6 py-3">Task Name</th>
+                            <th cope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white" class="px-6 py-3">For</th>
+                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white" class="px-6 py-3">Status</th>
+                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white" class="px-6 py-3">Actions</th>
                         </tr>
-                    @endforeach
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        @foreach ($tasks as $task)
+                            <tr>
+                                <td class="px-6 py-4">{{ $task->task_name }}</td>
+                                <td class="px-6 py-4">{{ $task->for }}</td>
+                                <td class="px-6 py-4">{{ $task->status }}</td>
+                                <td class="px-6 py-4">
+                                    <a href="{{ route('tasks.edit', $task->id) }}" class="text-blue-500 hover:text-blue-700">Edit</a>
+                                    <form action="{{ route('tasks.destroy', $task->id) }}" method="POST" class="inline">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="text-red-500 hover:text-red-700 ml-2">Delete</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+             </div>
+             {{ $tasks->links() }}
+             <div>
+                <hr>
+             </div>
+             <div>
+             <b>Completed Tasks List</b>
+             <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+                <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white" class="px-6 py-3">Task Name</th>
+                            <th cope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white" class="px-6 py-3">For</th>
+                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white" class="px-6 py-3">Status</th>
+                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white" class="px-6 py-3">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($tasks as $task)
+                            <tr>
+                                <td class="px-6 py-4">{{ $task->task_name }}</td>
+                                <td class="px-6 py-4">{{ $task->for }}</td>
+                                <td class="px-6 py-4">{{ $task->status }}</td>
+                                <td class="px-6 py-4">
+                                    <a href="{{ route('tasks.edit', $task->id) }}" class="text-blue-500 hover:text-blue-700">Edit</a>
+                                    <form action="{{ route('tasks.destroy', $task->id) }}" method="POST" class="inline">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="text-red-500 hover:text-red-700 ml-2">Delete</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+             </div>
         </div>
+        {{ $tasks->links() }}
+        </div>
+    </div>
 </x-app-layout>

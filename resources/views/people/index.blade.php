@@ -21,7 +21,7 @@
                     <tr>
                         <td class="border px-4 py-2">{{ $person->id }}</td>
                         <td class="border px-4 py-2">{{ $person->name }}</td>
-                        <td class="border px-4 py-2">{{ $person->business->name }}</td>
+                        <td class="border px-4 py-2">{{ $person->business->business_name }}</td>
                         <td class="border px-4 py-2">
                             <a href="{{ route('people.show', $person->id) }}" class="text-blue-500 hover:text-blue-700">View</a>
                             <a href="{{ route('people.edit', $person->id) }}" class="text-yellow-500 hover:text-yellow-700 ml-2">Edit</a>

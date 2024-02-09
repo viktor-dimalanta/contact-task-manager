@@ -10,7 +10,7 @@
         <table class="table-auto mt-4">
             <thead>
                 <tr>
-                    <th class="px-4 py-2">ID</th>
+                    <th class="px-4 py-2">Business Name</th>
                     <th class="px-4 py-2">Name</th>
                     <th class="px-4 py-2">Actions</th>
                 </tr>
@@ -18,8 +18,10 @@
             <tbody>
                 @foreach ($businesses as $business)
                     <tr>
-                        <td class="border px-4 py-2">{{ $business->id }}</td>
-                        <td class="border px-4 py-2">{{ $business->name }}</td>
+                        <td class="border px-4 py-2">{{ $business->business_name }}</td>
+                        <td class="border px-4 py-2">{{ $business->email }}</td>
+                        <td class="border px-4 py-2">{{ $business->categories }}</td>
+                        <td class="border px-4 py-2">{{ $business->tags }}</td>
                         <td class="border px-4 py-2">
                             <a href="{{ route('businesses.show', $business->id) }}" class="text-blue-500 hover:text-blue-700">View</a>
                             <a href="{{ route('businesses.edit', $business->id) }}" class="text-yellow-500 hover:text-yellow-700 ml-2">Edit</a>
