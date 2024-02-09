@@ -66,9 +66,12 @@ _Follow the steps below to install the project in your local machine._
    ```
 7. run seeder
    ```sh
-   php artisan seed
+   php artisan db:seed
    ```
-   
+## Sample Credentials
+
+* viktor@example.com
+* jolibee
 <!-- USAGE EXAMPLES -->
 ## Usage
 
