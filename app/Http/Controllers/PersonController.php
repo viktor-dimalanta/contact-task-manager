@@ -15,7 +15,7 @@ class PersonController extends Controller
     
     public function index()
     {
-        $people = Person::with('business')->paginate(10);
+        $people = Person::paginate(10);
         return view('people.index', compact('people'));
     }
 

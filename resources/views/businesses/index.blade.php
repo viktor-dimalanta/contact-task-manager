@@ -28,8 +28,12 @@
                                     <td class="px-6 py-4">{{ $business->categories }}</td>
                                     <td class="px-6 py-4">{{ $business->tags }}</td>
                                     <td class="px-6 py-4">
-                                        <a href="{{ route('businesses.show', $business->id) }}" class="text-blue-500 hover:text-blue-700"><i class="fas fa-eye mr-2"></i></a>
                                         <a href="{{ route('businesses.edit', $business->id) }}" class="text-yellow-500 hover:text-yellow-700 ml-2"><i class="fas fa-edit mr-2"></i></a>
+                                        <form action="{{ route('businesses.destroy', $business->id) }}" method="POST" class="inline">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="text-red-500 hover:text-red-700 ml-2"><i class="fa fa-trash"></i></button>
+                                        </form>
                                     </td>
                                 </tr>
                             @endforeach
