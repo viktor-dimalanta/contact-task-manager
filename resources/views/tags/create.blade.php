@@ -1,25 +1,27 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Tags') }}
+            {{ __('Categories') }}
         </h2>
     </x-slot>
-    <div class="container mx-auto">
-        <h1 class="text-2xl font-bold mt-4 mb-2">Add New Tag</h1>
-        <form action="{{ route('tags.store') }}" method="POST">
-            @csrf
-            <div class="mb-4">
-                <label class="block text-gray-700 text-sm font-bold mb-2" for="name">Name</label>
-                <input type="text" id="name" name="name" value="{{ old('name') }}" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Enter tag name">
-                @error('name')
-                    <p class="text-red-500 text-xs italic">{{ $message }}</p>
-                @enderror
+    <div class="my-6">
+        <div class="grid sm:grid-cols items-center gap-16 p-8 mx-auto max-w-4xl bg-white shadow-[0_2px_10px_-3px_rgba(6,81,237,0.3)] rounded-md text-[#333] font-[sans-serif]">
+            <div class="relative overflow-x-auto shadow-md sm:rounded-lg" style="padding: 30px;">
+                <h4 class="text-2xl font-bold mt-4 mb-2">Add New Tag</h4>
+                    <form action="{{ route('tags.store') }}" method="POST">
+                        @csrf
+                        <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                            <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-business-name">
+                                Tag Name
+                            </label>
+                            <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-business-name" type="text">
+                        </div>
+                        <div class="flex justify-end mb-4 space-x-2">
+                            <a href="{{ route('tags.index') }}" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">Cancel</a>
+                            <a href="{{ route('tags.create') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Add category</a>
+                         </div>
+                    </form>
             </div>
-            <!-- Add other fields here as needed -->
-            <div class="flex items-center justify-between">
-                <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Create Tag</button>
-                <a href="{{ route('tags.index') }}" class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800">Cancel</a>
-            </div>
-        </form>
+        </div>
     </div>
 </x-app-layout>
