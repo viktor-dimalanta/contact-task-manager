@@ -4,19 +4,24 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\Task;
+use Faker\Factory as Faker;
 
 class TaksSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
-    public function run(): void
+    public function run()
     {
-        for ($i = 1; $i <= 100; $i++) {
+        $faker = Faker::create();
+
+        for ($i = 0; $i < 30; $i++) {
             Task::create([
-                'task_name' => 'Task ' . $i,
-                'for' => 'Person ' . $i,
-                'status' => 'Pending', // You can change this to other statuses as needed
+                'task_name' => $faker->sentence,
+                'for' => $faker->name,
+                'status' => $faker->randomElement(['1', '0']),
+                'created_at' => $faker->dateTimeThisYear(),
+                'updated_at' => now(),
             ]);
         }
     }

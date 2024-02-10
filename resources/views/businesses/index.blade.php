@@ -26,7 +26,14 @@
                                     <td class="px-6 py-4"><a href="{{ route('businesses.show', $business->id) }}" class="text-yellow-500 hover:text-yellow-700 ml-2">{{ $business->business_name }}</a></td>
                                     <td class="px-6 py-4">{{ $business->email }}</td>
                                     <td class="px-6 py-4">{{ $business->categories }}</td>
-                                    <td class="px-6 py-4">{{ $business->tags }}</td>
+                                    <td class="px-6 py-4">
+                                        @foreach(json_decode($business->tags) as $tag)
+                                            <div class="text-xs inline-flex items-center font-bold leading-sm uppercase px-3 py-1 bg-blue-200 text-blue-700 rounded-full">    
+                                                <div><p>{{ $tag }}</p></div>
+                                            </div>
+                                        @endforeach
+
+                                    </td>
                                     <td class="px-6 py-4">
                                         <a href="{{ route('businesses.edit', $business->id) }}" class="text-yellow-500 hover:text-yellow-700 ml-2"><i class="fas fa-edit mr-2"></i></a>
                                         <form id="deleteForm{{ $business->id }}" action="{{ route('businesses.destroy', $business->id) }}" method="POST" class="inline">

@@ -4,21 +4,27 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\Person;
+use Faker\Factory as Faker;
 
 class PeopleSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
-    public function run(): void
+    public function run()
     {
-        for ($i = 1; $i <= 100; $i++) {
+        $faker = Faker::create();
+
+        for ($i = 0; $i < 30; $i++) {
             Person::create([
-                'name' => 'Person ' . $i,
-                'email' => 'person' . $i . '@example.com',
-                'phone' => '123456789' . $i,
-                'business' => 'Business ' . $i,
-                'tags' => 'Tag ' . $i . ', Tag ' . ($i + 1),
+                'first_name' => $faker->firstName,
+                'last_name' => $faker->lastName,
+                'email' => $faker->email,
+                'phone' => $faker->phoneNumber,
+                'business' => $faker->company,
+                'tags' => json_encode($faker->words(3)),
+                'created_at' => $faker->dateTimeThisYear(),
+                'updated_at' => now(),
             ]);
         }
     }
