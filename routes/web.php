@@ -81,7 +81,10 @@ use Illuminate\Support\Facades\Route;
             'update' => 'categories.update',
             'destroy' => 'categories.destroy',
         ]);
-    
+
+        Route::put('/tasks/{task}/update-to-open-status', [TaskController::class, 'updateToOpenStatus'])->name('tasks.updateToOpenStatus');
+        Route::put('/tasks/{task}/update-to-completed-status', [TaskController::class, 'updateToCompletedStatus'])->name('tasks.updateToCompletedStatus');
+
     });
 
 require __DIR__.'/auth.php';

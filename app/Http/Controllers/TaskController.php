@@ -14,8 +14,9 @@ class TaskController extends Controller
     
     public function index()
     {
-        $tasks = Task::paginate(10);
-        return view('tasks.index', compact('tasks'));
+        $completedTasks = Task::where('status', '1')->paginate(10);
+        $openTasks = Task::where('status', '0')->paginate(10);
+        return view('tasks.index', compact(['completedTasks','openTasks']));
     }
 
     public function create()
@@ -52,6 +53,22 @@ class TaskController extends Controller
         $task->update($validatedData);
 
         return redirect()->route('tasks.index')->with('success', 'Task updated successfully.');
+    }
+
+    public function updateToOpenStatus(Task $task)
+    {
+        $task->status = 0;
+        $task->save();
+
+        return response()->json(['status' => $task->status === 1 ? 'Open' : 'Completed']);
+    }
+
+    public function updateToCompletedStatus(Task $task)
+    {
+        $task->status = 1;
+        $task->save();
+
+        return response()->json(['status' => $task->status === 1 ? 'Open' : 'Completed']);
     }
 
     public function destroy(Task $task)

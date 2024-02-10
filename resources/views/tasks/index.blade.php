@@ -18,22 +18,29 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($tasks as $task)
+                        @foreach ($completedTasks as $task)
                             <tr>
                                 <td class="px-6 py-4">{{ $task->task_name }}</td>
                                 <td class="px-6 py-4">{{ $task->for }}</td>
-                                <td class="px-6 py-4">{{ $task->status }}</td>
+                                <td class="px-6 py-4">{{ $task->status == 1 ? 'Completed' : 'Open'}}</td>
                                 <td class="px-6 py-4">
-                                    <a href="#" onclick="confirmDelete('{{ $task->id }}')" class="text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-green-600 dark:hover:bg-green-700 focus:outline-none dark:focus:ring-green-800">Complete</a>
+                                <button onclick="confirmUpdateStatus('{{ $task->id }}')" class="text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-green-600 dark:hover:bg-green-700 focus:outline-none dark:focus:ring-green-800">Complete</a>
                                     <script>
-                                        function confirmDelete(personId) {
-                                            // Display confirmation dialog
-                                            if (window.confirm('Are you sure you want to complete task?')) {
-                                                // If user confirms, submit the form
-                                                document.getElementById('deleteForm' + personId).submit();
+                                        function confirmUpdateStatus(taskId) {
+                                            if (confirm('Are you sure you want to update the status?')) {
+                                                updateToOpenStatus(taskId);
                                             }
-                                            // Prevent default action of anchor tag
-                                            event.preventDefault();
+                                        }
+                                        function updateToOpenStatus(taskId) {
+                                            //Send an AJAX request to update the status
+                                            axios.put('/tasks/' + taskId + '/update-to-open-status')
+                                                .then(response => {
+                                                    alert("Task Update Successfully!")
+                                                    window.location.reload();
+                                                })
+                                                .catch(error => {
+                                                    console.error('Error updating status:', error);
+                                                });
                                         }
                                     </script>
                                 </td>
@@ -42,7 +49,7 @@
                     </tbody>
                 </table>
              </div>
-             {{ $tasks->links() }}
+                {{ $completedTasks->links() }}
              <div>
                 <hr>
              </div>
@@ -59,22 +66,29 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($tasks as $task)
+                        @foreach ($openTasks as $task)
                             <tr>
                                 <td class="px-6 py-4">{{ $task->task_name }}</td>
                                 <td class="px-6 py-4">{{ $task->for }}</td>
-                                <td class="px-6 py-4">{{ $task->status }}</td>
+                                <td class="px-6 py-4">{{ $task->status == 1 ? 'Completed' : 'Open' }}</td>
                                 <td class="px-6 py-4">
-                                    <a href="#" onclick="confirmDelete('{{ $task->id }}')" class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-red-600 dark:hover:bg-red-700 focus:outline-none dark:focus:ring-red-800">Re-Open</a>
+                                    <button onclick="confirmUpdateStatus('{{ $task->id }}')" class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-red-600 dark:hover:bg-red-700 focus:outline-none dark:focus:ring-red-800">Re-Open</a>
                                     <script>
-                                        function confirmDelete(taskId) {
-                                            // Display confirmation dialog
-                                            if (window.confirm('Are you sure you want to complete task?')) {
-                                                // If user confirms, submit the form
-                                                document.getElementById('deleteForm' + taskId).submit();
+                                        function confirmUpdateStatus(taskId) {
+                                            if (confirm('Are you sure you want to update the status?')) {
+                                                updateToCompletedStatus(taskId);
                                             }
-                                            // Prevent default action of anchor tag
-                                            event.preventDefault();
+                                        }
+                                        function updateToCompletedStatus(taskId) {
+                                            //Send an AJAX request to update the status
+                                            axios.put('/tasks/' + taskId + '/update-to-completed-status')
+                                                .then(response => {
+                                                    alert("Task Update Successfully!")
+                                                    window.location.reload();
+                                                })
+                                                .catch(error => {
+                                                    console.error('Error updating status:', error);
+                                                });
                                         }
                                     </script>
                                 </td>
@@ -84,7 +98,7 @@
                 </table>
              </div>
         </div>
-        {{ $tasks->links() }}
+        {{ $openTasks->links() }}
         </div>
     </div>
 </x-app-layout>
