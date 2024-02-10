@@ -49,7 +49,7 @@
                     </tbody>
                 </table>
              </div>
-                {{ $completedTasks->links() }}
+                {{ $openTasks->links() }}
              <div>
                 <hr>
              </div>
