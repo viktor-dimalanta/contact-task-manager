@@ -62,9 +62,12 @@ class PersonController extends Controller
     public function update(Request $request, Person $person)
     {
         $validatedData = $request->validate([
-            'name' => 'required',
-            'email' => 'required|email',
-            // Add validation rules for other fields
+            'first_name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
+            'email' => 'required',
+            'phone' => 'required|string|max:20',
+            'business' => 'required|string',
+            'tags' => 'array',
         ]);
 
         $person->update($validatedData);
