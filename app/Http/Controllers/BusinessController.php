@@ -16,14 +16,14 @@ class BusinessController extends Controller
     
     public function index()
     {
-        $businesses = Business::paginate(10);
+        $businesses = Business::orderBy('created_at', 'desc')->paginate(10);
         return view('businesses.index', compact('businesses'));
     }
 
     public function create()
     {
-        $tags = Tag::paginate(10);
-        $categories = Category::paginate(10);
+        $tags = Tag::orderBy('created_at', 'desc')->paginate(10);
+        $categories = Category::orderBy('created_at', 'desc')->paginate(10);
         return view('businesses.create', compact(['tags','categories']));
     }
 
@@ -43,8 +43,8 @@ class BusinessController extends Controller
 
     public function edit(Business $business)
     {
-        $tags = Tag::paginate(10);
-        $categories = Category::paginate(10);
+        $tags = Tag::orderBy('created_at', 'desc')->paginate(10);
+        $categories = Category::orderBy('created_at', 'desc')->paginate(10);
         
         return view('businesses.edit', compact(['business','tags','categories']));
     }

@@ -16,33 +16,46 @@ class PersonController extends Controller
     
     public function index()
     {
-        $people = Person::paginate(10);
+        $people = Person::orderBy('created_at', 'desc')->paginate(10);
         return view('people.index', compact('people'));
     }
 
     public function create()
     {
-        $tags = Tag::paginate(10);
-        $businesses = Business::paginate(10);
+        $tags = Tag::orderBy('created_at', 'desc')->paginate(10);
+        $businesses = Business::orderBy('created_at', 'desc')->paginate(10);
+        //$businesses = Business::paginate(10);
         return view('people.create', compact(['businesses','tags']));
     }
 
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
-            'name' => 'required',
-            'email' => 'required|email',
-            // Add validation rules for other fields
-        ]);
+        // $request->validate([
+        //     'first_name' => 'required',
+        //     'last_name' => 'required',
+        //     'email' => 'required|email',
+        //     'phone' => 'required',
+        //     'business' => 'required',
+        //     'tags' => 'required',
+        //     // Add validation rules for other fields
+        // ]);
 
-        Person::create($validatedData);
+        $person = new Person();
+        $person->first_name = $request->first_name;
+        $person->last_name = $request->last_name;
+        $person->email = $request->email;
+        $person->phone = $request->phone;
+        $person->business = $request->business;
+        $person->business_id = 2;
+        $person->tags = $request->tags;
+        $person->save();
 
         return redirect()->route('people.index')->with('success', 'Person created successfully.');
     }
 
     public function edit(Person $person)
     {
-        $tags = Tag::paginate(10);
+        $tags = Tag::orderBy('created_at', 'desc')->paginate(10);
         $all_person = Person::with('business')->get();
         return view('people.edit', compact(['person','all_person','tags']));
     }
