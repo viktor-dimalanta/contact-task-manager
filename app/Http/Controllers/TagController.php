@@ -25,12 +25,13 @@ class TagController extends Controller
 
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
-            'name' => 'required|unique:tags|max:255',
-            // Add validation rules for other fields
+        $request->validate([
+            'tag_name' => 'required|string|max:255',
         ]);
 
-        Tag::create($validatedData);
+        $tag = new Tag();
+        $tag->tag_name = $request->tag_name;
+        $tag->save();
 
         return redirect()->route('tags.index')->with('success', 'Tag created successfully.');
     }

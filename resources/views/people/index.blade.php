@@ -28,7 +28,7 @@
                                     <td class="px-6 py-4">{{ $person->business }}</td>
                                     <td class="px-6 py-4">{{ $person->business }}</td>
                                     <td class="px-6 py-4">{{ $person->business }}</td>
-                                    <td class="px-6 py-4">{{ $person->business }}</td>
+                                    <td class="px-6 py-4">{{ $person->tags }}</td>
                                     <td class="px-6 py-4">
                                         <a href="{{ route('people.edit', $person->id) }}" class="text-yellow-500 hover:text-yellow-700 ml-2"><i class="fas fa-edit mr-2"></i></a>
                                         <form id="deleteForm{{ $person->id }}" action="{{ route('people.destroy', $person->id) }}" method="POST" class="inline">

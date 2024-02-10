@@ -36,7 +36,7 @@ class PersonController extends Controller
             'email' => 'required|email|unique:people|max:255',
             'phone' => 'required|string|max:20',
             'business' => 'required|string',
-            'tags' => 'required',
+            'tags' => 'array',
         ]);
 
         $person = new Person();
@@ -46,7 +46,7 @@ class PersonController extends Controller
         $person->phone = $request->phone;
         $person->business = $request->business;
         $person->business_id = 2;
-        $person->tags = $request->tags;
+        $person->tags = json_encode($request->tags);
         $person->save();
 
         return redirect()->route('people.index')->with('success', 'Person created successfully.');

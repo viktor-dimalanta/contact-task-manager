@@ -32,15 +32,15 @@ class BusinessController extends Controller
         $request->validate([
             'business_name' => 'required|string|max:255',
             'email' => 'required|email|unique:people|max:255',
-            'categories' => 'required|string|max:20',
-            'tags' => 'required',
+            'categories' => 'array',
+            'tags' => 'array',
         ]);
 
         $business = new Business();
         $business->business_name = $request->business_name;
         $business->email = $request->email;
-        $business->categories = $request->categories;
-        $business->tags = $request->tags;
+        $business->categories = json_encode($request->categories);
+        $business->tags = json_encode($request->tags);
         $business->save();
 
         return redirect()->route('businesses.index')->with('success', 'Business created successfully.');

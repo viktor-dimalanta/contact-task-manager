@@ -25,12 +25,13 @@ class CategoryController extends Controller
 
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
-            'name' => 'required|unique:categories|max:255',
-            // Add validation rules for other fields
+        $request->validate([
+            'category_name' => 'required|string|max:255',
         ]);
 
-        Category::create($validatedData);
+        $category = new Category();
+        $category->category_name = $request->category_name;
+        $category->save();
 
         return redirect()->route('categories.index')->with('success', 'Category created successfully.');
     }
