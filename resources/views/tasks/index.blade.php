@@ -65,7 +65,7 @@
                                 <td class="px-6 py-4">{{ $task->for }}</td>
                                 <td class="px-6 py-4">{{ $task->status }}</td>
                                 <td class="px-6 py-4">
-                                    <a href="#" onclick="confirmDelete('{{ $task->id }}')" class="text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-green-600 dark:hover:bg-green-700 focus:outline-none dark:focus:ring-green-800">Re-Open</a>
+                                    <a href="#" onclick="confirmDelete('{{ $task->id }}')" class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-red-600 dark:hover:bg-red-700 focus:outline-none dark:focus:ring-red-800">Re-Open</a>
                                     <script>
                                         function confirmDelete(taskId) {
                                             // Display confirmation dialog

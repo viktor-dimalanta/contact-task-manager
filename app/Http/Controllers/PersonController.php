@@ -40,7 +40,9 @@ class PersonController extends Controller
 
     public function edit(Person $person)
     {
-        return view('people.edit', compact('person'));
+        $all_person = Person::with('business')->get();
+        //dd($people);
+        return view('people.edit', compact(['person','all_person']));
     }
 
     public function update(Request $request, Person $person)
@@ -54,6 +56,13 @@ class PersonController extends Controller
         $person->update($validatedData);
 
         return redirect()->route('people.index')->with('success', 'Person updated successfully.');
+    }
+
+    public function show($id)
+    {
+        $person = Person::findOrFail($id); // Assuming your Person model is named Person
+
+        return view('people.show', compact('person'));
     }
 
     public function destroy(Person $person)

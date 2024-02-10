@@ -56,6 +56,13 @@ class BusinessController extends Controller
         return redirect()->route('businesses.index')->with('success', 'Business updated successfully.');
     }
 
+    public function show($id)
+    {
+        $business = Business::findOrFail($id); // Assuming your Business model is named Business
+
+        return view('businesses.show', compact('business'));
+    }
+
     public function destroy(Business $business)
     {
         // Delete business

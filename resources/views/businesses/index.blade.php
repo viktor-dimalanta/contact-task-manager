@@ -23,7 +23,7 @@
                         <tbody>
                             @foreach ($businesses as $business)
                                 <tr>
-                                    <td class="px-6 py-4">{{ $business->business_name }}</td>
+                                    <td class="px-6 py-4"><a href="{{ route('businesses.show', $business->id) }}" class="text-yellow-500 hover:text-yellow-700 ml-2">{{ $business->business_name }}</a></td>
                                     <td class="px-6 py-4">{{ $business->email }}</td>
                                     <td class="px-6 py-4">{{ $business->categories }}</td>
                                     <td class="px-6 py-4">{{ $business->tags }}</td>
