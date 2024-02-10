@@ -1,13 +1,14 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('People') }}
+            {{ __('Edit People') }}
         </h2>
     </x-slot>
     <div class="my-6">
         <div class="grid sm:grid-cols items-center gap-16 p-8 mx-auto max-w-4xl bg-white shadow-[0_2px_10px_-3px_rgba(6,81,237,0.3)] rounded-md text-[#333] font-[sans-serif]">
             <div class="relative overflow-x-auto shadow-md sm:rounded-lg" style="padding: 30px;">
-                <h3 class="text-2xl font-bold mt-4 mb-2">Edit Person</h3>
+                <h4 class="text-2xl font-bold mt-4 mb-2">Edit Person: {{ $person->first_name }}{{ $person->last_name }}</h4>
+
                 <form action="{{ route('people.update', $person->id) }}" method="POST">
                     @csrf
                     @method('PUT')
@@ -54,33 +55,17 @@
                     </div>
                     <div class="w-full md:w-1/2 px-3">
                         <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-technology">
-                            Technology
+                            Tags
                         </label>
                         <ul class="w-48 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
-                            <li class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
-                                <div class="flex items-center ps-3">
-                                    <input id="vue-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
-                                    <label for="vue-checkbox" class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Friends</label>
-                                </div>
-                            </li>
-                            <li class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
-                                <div class="flex items-center ps-3">
-                                    <input id="react-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
-                                    <label for="react-checkbox" class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Collueges</label>
-                                </div>
-                            </li>
-                            <li class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
-                                <div class="flex items-center ps-3">
-                                    <input id="angular-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
-                                    <label for="angular-checkbox" class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Client</label>
-                                </div>
-                            </li>
-                            <li class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
-                                <div class="flex items-center ps-3">
-                                    <input id="laravel-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
-                                    <label for="laravel-checkbox" class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Annoyances</label>
-                                </div>
-                            </li>
+                            @foreach($tags as $tag)
+                                <li class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+                                    <div class="flex items-center ps-3">
+                                        <input id="laravel-checkbox" type="checkbox" value="{{ $tag->tag_name }}" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                        <label for="laravel-checkbox" class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{ $tag->tag_name }}</label>
+                                     </div>
+                                </li>
+                            @endforeach
                         </ul>
                     </div>
                 </div>

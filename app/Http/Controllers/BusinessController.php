@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Business;
+use App\Models\Tag;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class BusinessController extends Controller
@@ -20,7 +22,9 @@ class BusinessController extends Controller
 
     public function create()
     {
-        return view('businesses.create');
+        $tags = Tag::paginate(10);
+        $categories = Category::paginate(10);
+        return view('businesses.create', compact(['tags','categories']));
     }
 
     public function store(Request $request)
@@ -39,7 +43,10 @@ class BusinessController extends Controller
 
     public function edit(Business $business)
     {
-        return view('businesses.edit', compact('business'));
+        $tags = Tag::paginate(10);
+        $categories = Category::paginate(10);
+        
+        return view('businesses.edit', compact(['business','tags','categories']));
     }
 
     public function update(Request $request, Business $business)

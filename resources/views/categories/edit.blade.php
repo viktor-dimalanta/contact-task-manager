@@ -1,13 +1,12 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Categories') }}
+            {{ __('Edit Categories:') }}- {{$category->category_name}}
         </h2>
     </x-slot>
     <div class="my-6">
         <div class="grid sm:grid-cols items-center gap-16 p-8 mx-auto max-w-4xl bg-white shadow-[0_2px_10px_-3px_rgba(6,81,237,0.3)] rounded-md text-[#333] font-[sans-serif]">
             <div class="relative overflow-x-auto shadow-md sm:rounded-lg" style="padding: 30px;">
-                <h4 class="text-2xl font-bold mt-4 mb-2">Edit Category</h4>
                     <form action="{{ route('categories.update', $category->id) }}" method="POST">
                         @csrf
                         @method('PUT')
@@ -15,7 +14,7 @@
                             <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-category-name">
                                 Category Name
                             </label>
-                            <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-category-name" type="text">
+                            <input value="{{ old('category_name', $category->category_name) }}" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-category-name" type="text">
                         </div>
                         <div class="flex justify-end mb-4 space-x-2">
                             <a href="{{ route('categories.index') }}" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">Cancel</a>

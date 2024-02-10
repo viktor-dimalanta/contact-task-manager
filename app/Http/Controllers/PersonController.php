@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Business;
 use App\Models\Person;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 
 class PersonController extends Controller
@@ -21,8 +22,9 @@ class PersonController extends Controller
 
     public function create()
     {
+        $tags = Tag::paginate(10);
         $businesses = Business::paginate(10);
-        return view('people.create', compact('businesses'));
+        return view('people.create', compact(['businesses','tags']));
     }
 
     public function store(Request $request)
@@ -40,9 +42,9 @@ class PersonController extends Controller
 
     public function edit(Person $person)
     {
+        $tags = Tag::paginate(10);
         $all_person = Person::with('business')->get();
-        //dd($people);
-        return view('people.edit', compact(['person','all_person']));
+        return view('people.edit', compact(['person','all_person','tags']));
     }
 
     public function update(Request $request, Person $person)
@@ -60,8 +62,7 @@ class PersonController extends Controller
 
     public function show($id)
     {
-        $person = Person::findOrFail($id); // Assuming your Person model is named Person
-
+        $person = Person::findOrFail($id); 
         return view('people.show', compact('person'));
     }
 
