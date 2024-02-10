@@ -80,11 +80,22 @@
                         <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Update Business</button>
                     </div>
                 </form>
-                <form action="{{ route('businesses.destroy', $business->id) }}" method="POST" class="inline">
+                </form>
+                <form id="deleteForm{{ $business->id }}" action="{{ route('businesses.destroy', $business->id) }}" method="POST" class="inline">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Delete</button>
+                        <button type="button" onclick="confirmDelete('{{ $business->id }}')" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Delete</button>
+
                 </form>
+                <script>
+                    function confirmDelete(businessId) {
+                        // Display confirmation dialog
+                        if (window.confirm('Are you sure you want to delete this business?')) {
+                            // If user confirms, submit the form
+                            document.getElementById('deleteForm' + businessId).submit();
+                        }
+                    }
+                </script>
             </div>
         </div>
   </div>

@@ -31,11 +31,20 @@
                                     <td class="px-6 py-4">{{ $person->business }}</td>
                                     <td class="px-6 py-4">
                                         <a href="{{ route('people.edit', $person->id) }}" class="text-yellow-500 hover:text-yellow-700 ml-2"><i class="fas fa-edit mr-2"></i></a>
-                                        <form action="{{ route('people.destroy', $person->id) }}" method="POST" class="inline">
+                                        <form id="deleteForm{{ $person->id }}" action="{{ route('people.destroy', $person->id) }}" method="POST" class="inline">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="text-red-500 hover:text-red-700 ml-2"><i class="fa fa-trash"></i></button>
+                                                <button type="button" onclick="confirmDelete('{{ $person->id }}')" class="text-red-500 hover:text-red-700 ml-2"><i class="fa fa-trash"></i></button>
                                         </form>
+                                        <script>
+                                            function confirmDelete(personId) {
+                                                // Display confirmation dialog
+                                                if (window.confirm('Are you sure you want to delete this person?')) {
+                                                    // If user confirms, submit the form
+                                                    document.getElementById('deleteForm' + personId).submit();
+                                                }
+                                            }
+                                        </script>
                                     </td>
                                 </tr>
                             @endforeach

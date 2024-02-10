@@ -23,11 +23,20 @@
                                         <td class="px-6 py-4">{{ $category->category_name }}</td>
                                         <td class="px-6 py-4">
                                             <a href="{{ route('categories.edit', $category->id) }}" class="text-blue-500 hover:text-blue-700"><i class="fas fa-edit mr-2"></i></a>
-                                            <form action="{{ route('categories.destroy', $category->id) }}" method="POST" class="inline">
+                                            <form id="deleteForm{{ $category->id }}" action="{{ route('categories.destroy', $category->id) }}" method="POST" class="inline">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="text-red-500 hover:text-red-700 ml-2"><i class="fa fa-trash"></i></button>
+                                                <button type="button" onclick="confirmDelete('{{ $category->id }}')" class="text-red-500 hover:text-red-700 ml-2"><i class="fa fa-trash"></i></button>
                                             </form>
+                                            <script>
+                                                function confirmDelete(categoryId) {
+                                                    // Display confirmation dialog
+                                                    if (window.confirm('Are you sure you want to delete this category?')) {
+                                                        // If user confirms, submit the form
+                                                        document.getElementById('deleteForm' + categoryId).submit();
+                                                    }
+                                                }
+                                            </script>
                                         </td>
                                     </tr>
                                 @endforeach

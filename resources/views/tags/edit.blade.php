@@ -22,11 +22,20 @@
                             <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Update Tag</button>
                          </div>
                     </form>
-                    <form action="{{ route('tags.destroy', $tag->id) }}" method="POST" class="inline">
+                    <form id="deleteForm{{ $tag->id }}" action="{{ route('tags.destroy', $tag->id) }}" method="POST" class="inline">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Delete</button>
+                        <button type="button" onclick="confirmDelete('{{ $tag->id }}')" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Delete</button>
                     </form>
+                    <script>
+                        function confirmDelete(tagId) {
+                            // Display confirmation dialog
+                            if (window.confirm('Are you sure you want to delete this tag?')) {
+                                // If user confirms, submit the form
+                                document.getElementById('deleteForm' + tagId).submit();
+                            }
+                        }
+                    </script>
             </div>
         </div>
     </div>
