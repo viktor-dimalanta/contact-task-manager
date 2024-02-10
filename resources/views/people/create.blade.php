@@ -10,6 +10,15 @@
                 <h3 class="text-2xl font-bold mt-4 mb-2">Add New Person</h3>
                 <form action="{{ route('people.store') }}" method="POST">
                     @csrf
+                    @if ($errors->any())
+                        <div class="bg-red-500 text-white font-bold px-4 py-2 rounded-md">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                     <div class="flex flex-wrap -mx-3 mb-6">
                         <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                             <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="first_name">

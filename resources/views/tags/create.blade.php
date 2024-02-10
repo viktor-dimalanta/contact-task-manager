@@ -10,6 +10,15 @@
                 <h4 class="text-2xl font-bold mt-4 mb-2">Add New Tag</h4>
                     <form action="{{ route('tags.store') }}" method="POST">
                         @csrf
+                        @if ($errors->any())
+                            <div class="bg-red-500 text-white font-bold px-4 py-2 rounded-md">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
                         <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                             <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-business-name">
                                 Tag Name
@@ -18,7 +27,7 @@
                         </div>
                         <div class="flex justify-end mb-4 space-x-2">
                             <a href="{{ route('tags.index') }}" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">Cancel</a>
-                            <a href="{{ route('tags.create') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Add category</a>
+                            <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Add Tags</button>
                          </div>
                     </form>
             </div>

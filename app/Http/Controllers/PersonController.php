@@ -30,15 +30,14 @@ class PersonController extends Controller
 
     public function store(Request $request)
     {
-        // $request->validate([
-        //     'first_name' => 'required',
-        //     'last_name' => 'required',
-        //     'email' => 'required|email',
-        //     'phone' => 'required',
-        //     'business' => 'required',
-        //     'tags' => 'required',
-        //     // Add validation rules for other fields
-        // ]);
+        $request->validate([
+            'first_name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
+            'email' => 'required|email|unique:people|max:255',
+            'phone' => 'required|string|max:20',
+            'business' => 'required|string',
+            'tags' => 'required',
+        ]);
 
         $person = new Person();
         $person->first_name = $request->first_name;

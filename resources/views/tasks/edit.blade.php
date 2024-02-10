@@ -9,6 +9,15 @@
         <form action="{{ route('tasks.update', $task->id) }}" method="POST">
             @csrf
             @method('PUT')
+            @if ($errors->any())
+                <div class="bg-red-500 text-white font-bold px-4 py-2 rounded-md">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
             <div class="mb-4">
                 <label class="block text-gray-700 text-sm font-bold mb-2" for="title">Title</label>
                 <input type="text" id="title" name="title" value="{{ old('title', $task->title) }}" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Enter task title">
