@@ -51,19 +51,19 @@ _Follow the steps below to install the project in your local machine._
    ```sh
    git clone https://github.com/viktor-dimalanta/contact-task-manager.git
    ```
-3. Install Composer
+2. Install Composer
    ```sh
    composer install
    ```
-4. Install NPM packages
+3. Install NPM packages
    ```sh
    npm install
    ```
-5. Create .env file copy the env.example
+4. Create .env file copy the env.example
    ```sh
    cp .env.example .env
    ```
-6. Create local database
+5. Create local database
    ```sh
    db name : contact-task-manager
 
@@ -76,23 +76,27 @@ _Follow the steps below to install the project in your local machine._
     DB_USERNAME=root
     DB_PASSWORD=
    ```
-7. run migration
+6. run migration
    ```sh
    php artisan migrate
    ```
-8. run seeder
+7. run seeder
    ```sh
    php artisan db:seed
    ```
+## How to Run
+
+Open two git bash and path to the project root folder
+
+* npm run dev
+* php artisan serve
+* go to localhost:8000
+
 ## Sample Credentials
 
 * user: viktor@example.com
 * pass: jolibee
 <!-- USAGE EXAMPLES -->
-## Usage
-
-* npm run dev
-* php artisan serve
 
 <!-- CONTRIBUTING -->
 ## Contributing
