@@ -59,12 +59,28 @@ _Follow the steps below to install the project in your local machine._
    ```sh
    npm install
    ```
-5. Create local database
-6. run migration
+5. Create .env file copy the env.example
+   ```sh
+   cp .env.example .env
+   ```
+6. Create local database
+   ```sh
+   db name : contact-task-manager
+
+   Adjust your env file for database config
+
+    DB_CONNECTION=mysql
+    DB_HOST=127.0.0.1
+    DB_PORT=3306
+    DB_DATABASE=contact-task-manager
+    DB_USERNAME=root
+    DB_PASSWORD=
+   ```
+7. run migration
    ```sh
    php artisan migrate
    ```
-7. run seeder
+8. run seeder
    ```sh
    php artisan db:seed
    ```
