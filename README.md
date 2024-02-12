@@ -21,7 +21,8 @@
 <!-- ABOUT THE PROJECT -->
 ## Contact Task Manager 
 
-![image](https://github.com/viktor-dimalanta/contact-task-manager/assets/45250045/c1a5f0d2-8722-4419-891d-421e5e7db361)
+![image](https://github.com/viktor-dimalanta/contact-task-manager/assets/45250045/7ce96a97-8c0c-42a6-9f5e-d4b4e89914a2)
+
 
 
 The application is called Contact and Task management Web Application for Jolibee Worldwide Services
