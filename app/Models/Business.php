@@ -9,6 +9,8 @@ class Business extends Model
     protected $fillable = [
         'business_name',
         'email',
+        'categories',
+        'tags',
     ];
     
     public function categories()

@@ -12,6 +12,7 @@ class Person extends Model
         'email',
         'phone',
         'business',
+        'tags',
     ];
     
     public function business()

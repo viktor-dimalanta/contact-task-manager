@@ -26,9 +26,9 @@
                                     <td class="px-6 py-4"><a href="{{ route('businesses.show', $business->id) }}" class="text-yellow-500 hover:text-yellow-700 ml-2">{{ $business->business_name }}</a></td>
                                     <td class="px-6 py-4">{{ $business->email }}</td>
                                     <td class="px-6 py-4">
-                                        @foreach(json_decode($business->tags) as $tag)
+                                        @foreach(json_decode($business->categories) as $category)
                                             <div class="text-xs inline-flex items-center font-bold leading-sm uppercase px-3 py-1 bg-blue-200 text-blue-700 rounded-full">    
-                                                <div><p>{{ $business->categories }}</p></div>
+                                                <div><p>{{  $category }}</p></div>
                                             </div>
                                         @endforeach
                                     <td class="px-6 py-4">

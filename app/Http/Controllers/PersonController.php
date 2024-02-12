@@ -23,8 +23,8 @@ class PersonController extends Controller
 
     public function create()
     {
-        $tags = Tag::orderBy('created_at', 'desc')->paginate(10);
-        $businesses = Business::orderBy('created_at', 'desc')->paginate(10);
+        $tags = Tag::orderBy('created_at', 'desc')->get();
+        $businesses = Business::orderBy('created_at', 'desc')->get();
         //$businesses = Business::paginate(10);
         return view('people.create', compact(['businesses','tags']));
     }
@@ -46,7 +46,6 @@ class PersonController extends Controller
         $person->email = $request->email;
         $person->phone = $request->phone;
         $person->business = $request->business;
-        $person->business_id = 2;
         $person->tags = json_encode($request->tags);
         $person->save();
 
@@ -62,6 +61,7 @@ class PersonController extends Controller
 
     public function update(Request $request, Person $person)
     {
+        //dd($request->tags);
         $validatedData = $request->validate([
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
@@ -70,6 +70,12 @@ class PersonController extends Controller
             'business' => 'required|string',
             'tags' => 'array',
         ]);
+
+        if (isset($validatedData['tags'])) {
+            $validatedData['tags'] = json_encode($validatedData['tags']);
+        }
+
+        //dd($validatedData);
 
         $person->update($validatedData);
 

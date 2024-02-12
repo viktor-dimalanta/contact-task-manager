@@ -18,7 +18,6 @@ class BusinessesSeeder extends Seeder
         for ($i = 0; $i < 30; $i++) {
             Business::create([
                 'business_name' => $faker->company,
-                'business_id' => $faker->unique()->uuid,
                 'email' => $faker->email,
                 'categories' => $faker->randomElement(['category1', 'category2', 'category3']),
                 'tags' => json_encode($faker->words(3)),

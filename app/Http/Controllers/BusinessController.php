@@ -22,8 +22,8 @@ class BusinessController extends Controller
 
     public function create()
     {
-        $tags = Tag::orderBy('created_at', 'desc')->paginate(10);
-        $categories = Category::orderBy('created_at', 'desc')->paginate(10);
+        $tags = Tag::orderBy('created_at', 'desc')->get();
+        $categories = Category::orderBy('created_at', 'desc')->get();
         return view('businesses.create', compact(['tags','categories']));
     }
 
@@ -63,6 +63,10 @@ class BusinessController extends Controller
             'categories' => 'array',
             'tags' => 'array',
         ]);
+
+        if (isset($validatedData['categories'])) {
+            $validatedData['categories'] = json_encode($validatedData['categories']);
+        }
 
         // Update business
         $business->update($validatedData);
