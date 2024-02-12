@@ -73,8 +73,9 @@ class BusinessController extends Controller
     public function show($id)
     {
         $business = Business::findOrFail($id); // Assuming your Business model is named Business
+        $tasks = $business->tasks;
 
-        return view('businesses.show', compact('business'));
+        return view('businesses.show', compact(['business','tasks']));
     }
 
     public function destroy(Business $business)

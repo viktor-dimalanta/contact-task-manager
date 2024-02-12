@@ -19,19 +19,24 @@
                     </div>
                     <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                         <div class="p-6 bg-white border-b border-gray-200">
-                            <form action="{{ route('tasks.store') }}" method="POST">
+                            <form id="taskForm" action="{{ route('tasks.store') }}" method="POST">
                                 @csrf
+                                <div>
+                                    <input type="hidden" value="{{ $person->first_name }} {{ $person->last_name }}" name="for">
+                                    <input type="hidden" value="{{ $person->id }}" name="person_id">
+                                    <input type="hidden" value="App\Models\Person" name="taskable_type">
+                                </div>
                                 <div class="mb-4">
                                     <label for="title" class="block text-sm font-medium text-gray-700">Title</label>
-                                    <input type="text" name="title" id="title" class="mt-1 p-2 block w-full border-gray-300 rounded-md" required>
+                                    <input type="text" name="title" id="title" class="mt-1 p-2 block w-full border-gray-300 rounded-md" required name="task_name">
                                 </div>
                                 <div class="mb-4">
                                     <label for="description" class="block text-sm font-medium text-gray-700">Description</label>
-                                    <textarea name="description" id="description" rows="3" class="mt-1 p-2 block w-full border-gray-300 rounded-md" required></textarea>
+                                    <textarea name="description" id="description" rows="3" class="mt-1 p-2 block w-full border-gray-300 rounded-md" required name="description"></textarea>
                                 </div>
                                 <div class="mb-4">
                                     <label for="status" class="block text-sm font-medium text-gray-700">Status</label>
-                                    <select name="status" id="status" class="mt-1 p-2 block w-full border-gray-300 rounded-md" required>
+                                    <select name="status" id="status" class="mt-1 p-2 block w-full border-gray-300 rounded-md" required name="status">
                                         <option value="open">Open</option>
                                         <option value="completed">Completed</option>
                                     </select>
@@ -41,10 +46,45 @@
                                 </div>
                             </form>
                         </div>
-                        sasasa
+                        <div class="p-6 bg-white border-b border-gray-200">
+                            <h3 class="text-xl font-bold mb-4">Task</h3>
+                            @if ($tasks->isEmpty())
+                                <p>No tasks found.</p>
+                            @else
+                                <ul>
+                                    @foreach ($tasks as $task)
+                                        <li><b>{{ $task->task_name }}</b></li>
+                                        <li>{{ $task->description }}</li>
+                                        <li>{{ $task->status === '1' ? 'Completed' : 'Open' }}</li>
+                                        <hr>
+                                    @endforeach
+                                </ul>
+                            @endif
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <script>
+        // Prevent form submission and handle it with JavaScript
+        document.getElementById('taskForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            fetch(this.action, {
+                method: this.method,
+                body: new FormData(this)
+            })
+            .then(response => {
+                if (response.ok) {
+                    console.log('Form submitted successfully');
+                    location.reload();
+                } else {
+                    console.error('Form submission failed');
+                }
+            })
+            .catch(error => {
+                console.error('An error occurred:', error);
+            });
+        });
+    </script>
 </x-app-layout>

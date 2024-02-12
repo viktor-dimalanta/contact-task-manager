@@ -26,13 +26,19 @@ class TaskController extends Controller
 
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
+        $request->validate([
             'title' => 'required',
             'description' => 'required',
-            // Add validation rules for other fields
         ]);
 
-        Task::create($validatedData);
+        $task = new Task();
+        $task->task_name = $request->title;
+        $task->description = $request->description;
+        $task->for = $request->for;
+        $task->status = $request->status === 'open' ? '0' : '1';
+        $task->taskable_id = $request->person_id;
+        $task->taskable_type = $request->taskable_type;
+        $task->save();
 
         return redirect()->route('tasks.index')->with('success', 'Task created successfully.');
     }
@@ -47,7 +53,6 @@ class TaskController extends Controller
         $validatedData = $request->validate([
             'name' => 'required',
             'description' => 'required',
-            // Add validation rules for other fields
         ]);
 
         $task->update($validatedData);

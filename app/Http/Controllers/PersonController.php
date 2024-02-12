@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Business;
 use App\Models\Person;
 use App\Models\Tag;
+use App\Models\Task;
 use Illuminate\Http\Request;
 
 class PersonController extends Controller
@@ -78,7 +79,8 @@ class PersonController extends Controller
     public function show($id)
     {
         $person = Person::findOrFail($id); 
-        return view('people.show', compact('person'));
+        $tasks = $person->tasks;
+        return view('people.show', compact(['person','tasks']));
     }
 
     public function destroy(Person $person)
