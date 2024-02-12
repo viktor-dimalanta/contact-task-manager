@@ -37,30 +37,29 @@
                                 Categories
                             </label>
                             <ul class="w-48 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
-                                <li class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
-                                    <div class="flex items-center ps-3">
-                                        <input id="vue-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
-                                        <label for="vue-checkbox" class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Utew</label>
-                                    </div>
-                                </li>
-                                <li class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
-                                    <div class="flex items-center ps-3">
-                                        <input id="react-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
-                                        <label for="react-checkbox" class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Nihil</label>
-                                    </div>
-                                </li>
-                                <li class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
-                                    <div class="flex items-center ps-3">
-                                        <input id="angular-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
-                                        <label for="angular-checkbox" class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Client</label>
-                                    </div>
-                                </li>
-                                <li class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
-                                    <div class="flex items-center ps-3">
-                                        <input id="laravel-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
-                                        <label for="laravel-checkbox" class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Annoyances</label>
-                                    </div>
-                                </li>
+                                @foreach($categories as $category)
+                                        <li class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+                                            <div class="flex items-center ps-3">
+                                                <?php 
+                                                    // Explode the $business->tags string into an array and remove any double quotes and trim whitespace
+                                                    preg_match('/\[(.*?)\]/', $business->categories, $matches);
+                                                    $array = explode(',', str_replace('"', '', $business->categories));
+                                                    $array = array_map('trim', $array);
+                                                    $array = array_map('trim', explode(',', str_replace('"', '', $matches[1])));
+                                                    // Check if the tag is in the $business->tags array
+
+                                                    $categoryChecked = in_array(trim($category->category_name), $array); 
+                                                ?>
+                                                <input id="{{ $category->category_name }}" 
+                                                    type="checkbox" 
+                                                    value="{{ $category->category_name }}" 
+                                                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" 
+                                                    name="categories[]" 
+                                                    {{ $categoryChecked ? 'checked' : '' }}>
+                                                <label for="{{ $category->category_name }}" class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{ $category->category_name }}</label>                                     
+                                            </div>
+                                        </li>
+                                    @endforeach
                             </ul>                        
                         </div>
                         <div class="w-full md:w-1/2 px-3">
@@ -71,8 +70,22 @@
                                 @foreach($tags as $tag)
                                     <li class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
                                         <div class="flex items-center ps-3">
-                                            <input id="laravel-checkbox" type="checkbox" value="{{ $tag->tag_name }}" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
-                                            <label for="laravel-checkbox" class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{ $tag->tag_name }}</label>
+                                            <?php 
+                                                // Explode the $business->tags string into an array and remove any double quotes and trim whitespace
+                                                preg_match('/\[(.*?)\]/', $business->tags, $matches);
+                                                $array = explode(',', str_replace('"', '', $business->tags));
+                                                $array = array_map('trim', $array);
+                                                $array = array_map('trim', explode(',', str_replace('"', '', $matches[1])));
+                                                // Check if the tag is in the $business->tags array
+                                                $tagChecked = in_array(trim($tag->tag_name), $array); 
+                                            ?>
+                                            <input id="{{ $tag->tag_name }}" 
+                                                type="checkbox" 
+                                                value="{{ $tag->tag_name }}" 
+                                                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" 
+                                                name="tags[]" 
+                                                {{ $tagChecked ? 'checked' : '' }}>
+                                            <label for="{{ $tag->tag_name }}" class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{ $tag->tag_name }}</label>                                     
                                         </div>
                                     </li>
                                 @endforeach

@@ -55,7 +55,7 @@ class PersonController extends Controller
 
     public function edit(Person $person)
     {
-        $tags = Tag::orderBy('created_at', 'desc')->paginate(10);
+        $tags = Tag::orderBy('created_at', 'desc')->get();
         $all_person = Person::with('business')->get();
         return view('people.edit', compact(['person','all_person','tags']));
     }

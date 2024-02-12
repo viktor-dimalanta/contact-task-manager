@@ -48,8 +48,8 @@ class BusinessController extends Controller
 
     public function edit(Business $business)
     {
-        $tags = Tag::orderBy('created_at', 'desc')->paginate(10);
-        $categories = Category::orderBy('created_at', 'desc')->paginate(10);
+        $tags = Tag::orderBy('created_at', 'desc')->get();
+        $categories = Category::orderBy('created_at', 'desc')->get();
         
         return view('businesses.edit', compact(['business','tags','categories']));
     }

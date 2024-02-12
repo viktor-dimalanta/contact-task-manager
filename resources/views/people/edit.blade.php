@@ -70,12 +70,21 @@
                             @foreach($tags as $tag)
                                 <li class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
                                     <div class="flex items-center ps-3">
+                                        <?php 
+                                            // Explode the $person->tags string into an array and remove any double quotes and trim whitespace
+                                            preg_match('/\[(.*?)\]/', $person->tags, $matches);
+                                            $array = explode(',', str_replace('"', '', $person->tags));
+                                            $array = array_map('trim', $array);
+                                            $array = array_map('trim', explode(',', str_replace('"', '', $matches[1])));
+                                            // Check if the tag is in the $person->tags array
+                                            $tagChecked = in_array(trim($tag->tag_name), $array); 
+                                        ?>
                                         <input id="{{ $tag->tag_name }}" 
                                             type="checkbox" 
                                             value="{{ $tag->tag_name }}" 
                                             class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" 
                                             name="tags[]" 
-                                            {{ in_array($tag->tag_name, explode(',', $person->tags)) ? 'checked' : '' }}>
+                                            {{ $tagChecked ? 'checked' : '' }}>
                                         <label for="{{ $tag->tag_name }}" class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{ $tag->tag_name }}</label>                                     
                                     </div>
                                 </li>
