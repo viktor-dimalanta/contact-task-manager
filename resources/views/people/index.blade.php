@@ -10,7 +10,7 @@
                  <div class="flex justify-end mb-4">
                     <a href="{{ route('people.create') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Add Person</a>
                 </div>
-                    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400" style="table-layout: fixed;">
                         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                         <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                                 <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white" class="px-6 py-3">Name</th>
@@ -24,14 +24,14 @@
                         <tbody>
                             @foreach ($people as $person)
                                 <tr>
-                                    <td class="px-6 py-4"><a href="{{ route('people.show', $person->id) }}" class="text-yellow-500 hover:text-yellow-700 ml-2">{{ $person->first_name }} {{ $person->last_name }}</a></td>
-                                    <td class="px-6 py-4">{{ $person->email }}</td>
-                                    <td class="px-6 py-4">{{ $person->phone }}</td>
-                                    <td class="px-6 py-4">{{ $person->business }}</td>
-                                    <td class="px-6 py-4">
+                                    <td class="px-6 py-4 truncate"><a href="{{ route('people.show', $person->id) }}" class="text-yellow-500 hover:text-yellow-700 ml-2">{{ $person->first_name }} {{ $person->last_name }}</a></td>
+                                    <td class="px-6 py-4 truncate">{{ $person->email }}</td>
+                                    <td class="px-6 py-4 truncate">{{ $person->phone }}</td>
+                                    <td class="px-6 py-4 truncate">{{ $person->business }}</td>
+                                    <td class="px-6 py-4 truncate">
                                     @foreach(json_decode($person->tags) as $tag)
                                     <div class="text-xs inline-flex items-center font-bold leading-sm uppercase px-3 py-1 bg-blue-200 text-blue-700 rounded-full">    
-                                         <div><p>{{ $tag }}</p></div>
+                                            <div><p>{{ $tag }}</p></div>
                                     </div>
                                     @endforeach
                                     </td>
@@ -55,7 +55,7 @@
                                 </tr>
                             @endforeach
                         </tbody>
-                     </table>
+                        </table>
                 </div>
         {{ $people->links() }}
         </div>
