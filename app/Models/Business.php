@@ -6,6 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Business extends Model
 {
+    protected $fillable = [
+        'business_name',
+        'email',
+    ];
+    
     public function categories()
     {
         return $this->belongsToMany(Category::class);

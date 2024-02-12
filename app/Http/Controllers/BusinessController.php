@@ -58,8 +58,10 @@ class BusinessController extends Controller
     {
         // Validation
         $validatedData = $request->validate([
-            'name' => 'required',
-            // Add validation rules for other fields
+            'business_name' => 'required|string|max:255',
+            'email' => 'required',
+            'categories' => 'array',
+            'tags' => 'array',
         ]);
 
         // Update business
