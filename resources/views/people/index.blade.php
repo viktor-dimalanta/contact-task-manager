@@ -25,7 +25,7 @@
                             @foreach ($people as $person)
                                 <tr>
                                     <td class="px-6 py-4"><a href="{{ route('people.show', $person->id) }}" class="text-yellow-500 hover:text-yellow-700 ml-2">{{ $person->first_name }} {{ $person->last_name }}</a></td>
-                                    <td class="px-6 py-4">{{ $person->business }}</td>
+                                    <td class="px-6 py-4">{{ $person->email }}</td>
                                     <td class="px-6 py-4">{{ $person->business }}</td>
                                     <td class="px-6 py-4">{{ $person->business }}</td>
                                     <td class="px-6 py-4">
