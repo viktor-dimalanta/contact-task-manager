@@ -68,7 +68,7 @@
                     <tbody>
                         @foreach ($openTasks as $task)
                             <tr>
-                                <td class="px-6 py-4">{{ $task->task_name }}</td>
+                                <td class="px-6 py-4" style="width: 300px;">{{ $task->task_name }}</td>
                                 <td class="px-6 py-4">{{ $task->for }}</td>
                                 <td class="px-6 py-4">{{ $task->status == 1 ? 'Completed' : 'Open' }}</td>
                                 <td class="px-6 py-4">

@@ -19,7 +19,7 @@ class BusinessesSeeder extends Seeder
             Business::create([
                 'business_name' => $faker->company,
                 'email' => $faker->email,
-                'categories' => $faker->randomElement(['category1', 'category2', 'category3']),
+                'categories' => json_encode($faker->words(3)),
                 'tags' => json_encode($faker->words(3)),
                 'created_at' => $faker->dateTimeThisYear(),
                 'updated_at' => now(),

@@ -12,7 +12,11 @@
                             <h3 class="text-xl font-bold mb-4">Business Details</h3>
                             <p><strong>Business Name:</strong> {{ $business->business_name }}</p>
                             <p><strong>Contact Email:</strong> {{ $business->email }}</p>
-                            <p><strong>Categories:</strong> {{ $business->categories }}</p>
+                            @foreach(json_decode($business->categories) as $business_category)
+                                <div class="text-xs inline-flex items-center font-bold leading-sm uppercase px-3 py-1 bg-blue-200 text-blue-700 rounded-full">    
+                                    <p><strong>Categories:</strong> {{ $business_category }}</p>
+                                </div>
+                            @endforeach
                             <!-- Add left column content -->
                         </div>
                     </div>
