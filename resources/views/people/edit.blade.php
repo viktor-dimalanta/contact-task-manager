@@ -107,7 +107,6 @@
                     function confirmDelete(personId) {
                         // Display confirmation dialog
                         if (window.confirm('Are you sure you want to delete this person?')) {
-                            // If user confirms, submit the form
                             document.getElementById('deleteForm' + personId).submit();
                         }
                     }

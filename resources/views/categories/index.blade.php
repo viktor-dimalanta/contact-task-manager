@@ -32,7 +32,6 @@
                                                 function confirmDelete(categoryId) {
                                                     // Display confirmation dialog
                                                     if (window.confirm('Are you sure you want to delete this category?')) {
-                                                        // If user confirms, submit the form
                                                         document.getElementById('deleteForm' + categoryId).submit();
                                                     }
                                                 }

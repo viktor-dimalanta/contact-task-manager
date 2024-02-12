@@ -39,7 +39,6 @@
                         function confirmDelete(tagId) {
                             // Display confirmation dialog
                             if (window.confirm('Are you sure you want to delete this tag?')) {
-                                // If user confirms, submit the form
                                 document.getElementById('deleteForm' + tagId).submit();
                             }
                         }

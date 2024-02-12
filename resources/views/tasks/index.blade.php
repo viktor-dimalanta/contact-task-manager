@@ -38,7 +38,6 @@
                                             }
                                         }
                                         function updateToOpenStatus(taskId) {
-                                            //Send an AJAX request to update the status
                                             axios.put('/tasks/' + taskId + '/update-to-open-status')
                                                 .then(response => {
                                                     alert("Task Update Successfully!")
@@ -92,7 +91,6 @@
                                             }
                                         }
                                         function updateToCompletedStatus(taskId) {
-                                            //Send an AJAX request to update the status
                                             axios.put('/tasks/' + taskId + '/update-to-completed-status')
                                                 .then(response => {
                                                     alert("Task Update Successfully!")

@@ -17,7 +17,6 @@
                                     <p><strong>Categories:</strong> {{ $business_category }}</p>
                                 </div>
                             @endforeach
-                            <!-- Add left column content -->
                         </div>
                     </div>
                     <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">

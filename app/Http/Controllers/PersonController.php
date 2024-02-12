@@ -25,7 +25,6 @@ class PersonController extends Controller
     {
         $tags = Tag::orderBy('created_at', 'desc')->get();
         $businesses = Business::orderBy('created_at', 'desc')->get();
-        //$businesses = Business::paginate(10);
         return view('people.create', compact(['businesses','tags']));
     }
 
@@ -61,7 +60,6 @@ class PersonController extends Controller
 
     public function update(Request $request, Person $person)
     {
-        //dd($request->tags);
         $validatedData = $request->validate([
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
@@ -74,9 +72,7 @@ class PersonController extends Controller
         if (isset($validatedData['tags'])) {
             $validatedData['tags'] = json_encode($validatedData['tags']);
         }
-
-        //dd($validatedData);
-
+        
         $person->update($validatedData);
 
         return redirect()->route('people.index')->with('success', 'Person updated successfully.');

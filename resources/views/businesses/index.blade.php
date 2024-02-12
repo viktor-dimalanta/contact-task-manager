@@ -47,9 +47,7 @@
                                         </form>
                                         <script>
                                             function confirmDelete(businessId) {
-                                                // Display confirmation dialog
                                                 if (window.confirm('Are you sure you want to delete this business?')) {
-                                                    // If user confirms, submit the form
                                                     document.getElementById('deleteForm' + businessId).submit();
                                                 }
                                             }

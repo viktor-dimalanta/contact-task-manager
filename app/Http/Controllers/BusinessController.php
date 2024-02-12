@@ -56,7 +56,6 @@ class BusinessController extends Controller
 
     public function update(Request $request, Business $business)
     {
-        // Validation
         $validatedData = $request->validate([
             'business_name' => 'required|string|max:255',
             'email' => 'required',
@@ -68,7 +67,6 @@ class BusinessController extends Controller
             $validatedData['categories'] = json_encode($validatedData['categories']);
         }
 
-        // Update business
         $business->update($validatedData);
 
         return redirect()->route('businesses.index')->with('success', 'Business updated successfully.');
@@ -76,7 +74,7 @@ class BusinessController extends Controller
 
     public function show($id)
     {
-        $business = Business::findOrFail($id); // Assuming your Business model is named Business
+        $business = Business::findOrFail($id);
         $tasks = $business->tasks;
 
         return view('businesses.show', compact(['business','tasks']));
@@ -84,7 +82,6 @@ class BusinessController extends Controller
 
     public function destroy(Business $business)
     {
-        // Delete business
         $business->delete();
 
         return redirect()->route('businesses.index')->with('success', 'Business deleted successfully.');

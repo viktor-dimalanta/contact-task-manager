@@ -41,13 +41,10 @@
                                         <li class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
                                             <div class="flex items-center ps-3">
                                                 <?php 
-                                                    // Explode the $business->tags string into an array and remove any double quotes and trim whitespace
                                                     preg_match('/\[(.*?)\]/', $business->categories, $matches);
                                                     $array = explode(',', str_replace('"', '', $business->categories));
                                                     $array = array_map('trim', $array);
                                                     $array = array_map('trim', explode(',', str_replace('"', '', $matches[1])));
-                                                    // Check if the tag is in the $business->tags array
-
                                                     $categoryChecked = in_array(trim($category->category_name), $array); 
                                                 ?>
                                                 <input id="{{ $category->category_name }}" 
@@ -71,12 +68,10 @@
                                     <li class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
                                         <div class="flex items-center ps-3">
                                             <?php 
-                                                // Explode the $business->tags string into an array and remove any double quotes and trim whitespace
                                                 preg_match('/\[(.*?)\]/', $business->tags, $matches);
                                                 $array = explode(',', str_replace('"', '', $business->tags));
                                                 $array = array_map('trim', $array);
                                                 $array = array_map('trim', explode(',', str_replace('"', '', $matches[1])));
-                                                // Check if the tag is in the $business->tags array
                                                 $tagChecked = in_array(trim($tag->tag_name), $array); 
                                             ?>
                                             <input id="{{ $tag->tag_name }}" 
@@ -106,9 +101,7 @@
                 </form>
                 <script>
                     function confirmDelete(businessId) {
-                        // Display confirmation dialog
                         if (window.confirm('Are you sure you want to delete this business?')) {
-                            // If user confirms, submit the form
                             document.getElementById('deleteForm' + businessId).submit();
                         }
                     }

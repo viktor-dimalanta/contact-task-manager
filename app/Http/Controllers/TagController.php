@@ -45,7 +45,6 @@ class TagController extends Controller
     {
         $validatedData = $request->validate([
             'tag_name' => 'required|unique:tags|max:255',
-            // Add validation rules for other fields
         ]);
 
         $tag->update($validatedData);

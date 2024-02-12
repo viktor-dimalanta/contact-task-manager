@@ -45,7 +45,6 @@ class CategoryController extends Controller
     {
         $validatedData = $request->validate([
             'category_name' => 'required|unique:categories|max:255',
-            // Add validation rules for other fields
         ]);
 
         $category->update($validatedData);
