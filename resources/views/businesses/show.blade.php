@@ -116,6 +116,6 @@
                 .catch(error => {
                     console.error('Error updating status:', error);
                 });
-            }
+        }
     </script>
 </x-app-layout>

@@ -53,10 +53,22 @@
                             @else
                                 <ul>
                                     @foreach ($tasks as $task)
-                                        <li><b>{{ $task->task_name }}</b></li>
-                                        <li>{{ $task->description }}</li>
-                                        <li>{{ $task->status === '1' ? 'Completed' : 'Open' }}</li>
-                                        <hr>
+                                        <li>
+                                            @if($task->status === '1')
+                                                <i class="fa fa-check" style="color: green;"></i>
+                                                <div class="text-xs inline-flex items-center font-bold leading-sm uppercase px-3 py-1 bg-blue-200 text-blue-700 rounded-full">    
+                                                <p> Completed</p>
+                                                </div>
+                                            @else
+                                                <button type="button" onclick="confirmUpdateStatus('{{ $task->id }}')" class="text-yellow-500 hover:text-yellow-700 ml-2"><i class="fa fa-share"></i></button>
+                                                <div class="text-xs inline-flex items-center font-bold leading-sm uppercase px-3 py-1 bg-red-200 text-red-700 rounded-full">    
+                                                    <p>Open</p>
+                                                </div>
+                                            @endif
+                                            <b>{{ $task->task_name }}</b>
+                                        </li>
+                                        <li>Description: {{ $task->description }}</li>
+                                        <br>
                                     @endforeach
                                 </ul>
                             @endif
@@ -86,5 +98,22 @@
                 console.error('An error occurred:', error);
             });
         });
+
+        function confirmUpdateStatus(taskId) {
+            if (confirm('Are you sure you want to update the status?')) {
+                updateToCompletedStatus(taskId);
+            }
+        }
+        function updateToCompletedStatus(taskId) {
+            //Send an AJAX request to update the status
+            axios.put('/tasks/' + taskId + '/update-to-completed-status')
+                .then(response => {
+                    alert("Task Update Successfully!")
+                    window.location.reload();
+                })
+                .catch(error => {
+                    console.error('Error updating status:', error);
+                });
+        }
     </script>
 </x-app-layout>
