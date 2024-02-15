@@ -30,9 +30,9 @@ The application is called Contact and Task management Web Application for Jolibe
 Tech Requirements:
 
 *  Backend: Laravel (Latest version)
-*  Frontend: VueJS --or-- Laravel's native Blade
+*  Frontend: VueJS (Axios)
 *  CSS: Tailwind CSS
-*  Database: MySQL --or-- Postgres
+*  Database: MySQL
 
 Functionalities:
 
