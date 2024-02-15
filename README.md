@@ -85,6 +85,10 @@ _Follow the steps below to install the project in your local machine._
    ```sh
    php artisan db:seed
    ```
+8. Generate new key
+   ```sh
+   php artisan key:generate
+   ```
 ## How to Run
 
 Open two git bash and path to the project root folder
