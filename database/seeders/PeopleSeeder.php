@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Business;
 use Illuminate\Database\Seeder;
 use App\Models\Person;
 use Faker\Factory as Faker;
@@ -22,6 +23,7 @@ class PeopleSeeder extends Seeder
                 'email' => $faker->email,
                 'phone' => $faker->phoneNumber,
                 'business' => $faker->company,
+                'business_id' => Business::all()->random()->id,
                 'tags' => json_encode($faker->words(3)),
                 'created_at' => $faker->dateTimeThisYear(),
                 'updated_at' => now(),

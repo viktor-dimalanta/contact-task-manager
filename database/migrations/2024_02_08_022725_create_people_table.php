@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('phone');
             $table->string('business');
             $table->string('tags');
+            $table->string('business_id')->nullable();
             $table->timestamps();
         });
     }
