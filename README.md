@@ -26,6 +26,25 @@
 
 The application is called Contact and Task management Web Application for Jolibee Worldwide Services
 
+
+Tech Requirements:
+
+*  Backend: Laravel (Latest version)
+*  Frontend: VueJS --or-- Laravel's native Blade
+*  CSS: Tailwind CSS
+*  Database: MySQL --or-- Postgres
+
+Functionalities:
+
+*  Full CRUD operations for Businesses and People
+*  Businesses can belong to one or more Categories
+*  People may belong to one Business
+*  Both People and Businesses can have Tags assigned to them
+*  Interface to manage Tags and Categories
+*  Both People and Businesses can have Tasks assigned to them
+*  View to display all the assigned tasks
+*  All users should have access to all Businesses and People
+
 ### Built With
 
 *  [![Laravel][Laravel.com]][Laravel-url]
