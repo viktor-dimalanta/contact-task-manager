@@ -93,6 +93,14 @@ Open two git bash and path to the project root folder
 * php artisan serve
 * go to localhost:8000
 
+## Unit Testing
+
+To test laravel function and features we will use the default testing found here
+
+https://laravel.com/docs/10.x/testing
+
+* php artisan test
+
 ## Sample Credentials
 
 * user: viktor@example.com
